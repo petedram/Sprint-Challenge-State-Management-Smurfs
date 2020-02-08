@@ -7,10 +7,6 @@ import SmurfList from './SmurfList';
 import { addSmurf } from '../actions/actions';
 
 
-
-
-
-
 class App extends Component {
 
   state = {

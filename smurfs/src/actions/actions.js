@@ -19,6 +19,7 @@ export const updateList = () => dispatch => {
 
 export const addSmurf = (newName, newAge, newHeight) => dispatch => {
     console.log('from action: ', newName, newAge, newHeight );
+
     const newValue = {
         name: newName,
         age: newAge,
@@ -37,8 +38,24 @@ export const addSmurf = (newName, newAge, newHeight) => dispatch => {
             console.log(error);
         });
     }, 2000);
+}
 
+export const deleteSmurf = (smurfID) => dispatch => {
+    console.log('from action: ', smurfID );
+    const delValue = 'http://localhost:3333/smurfs/' + smurfID
+    console.log(delValue);
 
+    setTimeout ( () => {
+        axios
+        .delete(delValue)
+        .then(function (response) {
+            console.log('from post action axios', response)
+            dispatch({type: UPDATE_LIST, payload: response.data})
+            })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }, 2000);
 }
 
 
