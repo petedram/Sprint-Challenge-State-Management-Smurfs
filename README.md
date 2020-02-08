@@ -23,10 +23,34 @@ In this challenge, you are to build a Smurfs village utilizing context or Redux 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+
+Complexity of prop drilling parent to child. It becomes cumbersome when the state is used by multiple components across the app. Context removes the need for prop drilling.
+
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+Actions = object that describes to our reducer function what to do with the state.
+
+Reducers = pure function which takes two in two objects, reduces to a single object and returns the single object. They are payloads of information that send data from your application to your store.
+
+The Store - it's a single object that holds the application's state tree. It is single source of truth because the only way to change the state inside it is to dispatch an action on it.
+
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+Application state is when state is held in the Store, Component state is available only in component or via child/parent relationship. It is a good idea to use application state for larger and more complex applications.
+
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+With a plain basic Redux store, you can only do simple synchronous updates by dispatching an action. Redux-thunk is Middleware that extends the store's abilities, and let you write async logic that interacts with the store. For example, API requests which are async due to the way promises work or with user authentication - there are different things which can happen - middleware can check the response and tell the reducer what action type it needs to dispatch. Redux Thunk lets you call action creators that return a function instead of an action object.
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+
+Redux over Conext-API because:
+1) More common and used in many existing code-bases.
+2) Redux is more opinionated - i.e. Redux only allows a single Store whereas Context-API allows for multiple. 
+
 
 ## Project Set Up
 
