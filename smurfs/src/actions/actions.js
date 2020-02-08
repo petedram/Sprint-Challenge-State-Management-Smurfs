@@ -17,4 +17,28 @@ export const updateList = () => dispatch => {
     }, 2000);
 }
 
+export const addSmurf = (newName, newAge, newHeight) => dispatch => {
+    console.log('from action: ', newName, newAge, newHeight );
+    const newValue = {
+        name: newName,
+        age: newAge,
+        height: newHeight
+    };
+    console.log('new object', newValue);
+
+    setTimeout ( () => {
+        axios
+        .post("http://localhost:3333/smurfs", newValue)
+        .then(function (response) {
+            console.log('from post action axios', response)
+            dispatch({type: UPDATE_LIST, payload: response.data})
+            })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }, 2000);
+
+
+}
+
 
