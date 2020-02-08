@@ -1,13 +1,5 @@
 export const initialState = {
-    smurfs:
-    [
-        {
-          name: "Brainey",
-          age: 200,
-          height: "5cm",
-          id: 0
-        }
-    ],
+    smurfs: [],
     error: ''
 };
 
@@ -18,7 +10,7 @@ export const smurfReducer = (state = initialState, action) => {
         console.log('logging state from reducer', state)
         return {
           ...state,
-          smurfs: [...state.smurfs, action.payload]
+          smurfs: action.payload
         }
       case 'SET_ERROR':
         return {

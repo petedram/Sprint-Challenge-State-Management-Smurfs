@@ -1,23 +1,39 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import { updateList } from '../actions/actions';
 
 const SmurfList = props => {
 
-    const loadList = e => {
-        console.log('SmurfList props', props.smurfs);
+    useEffect(() => {
+        props.updateList();
+      }, []);
+    
+    function loadCards() {
+        console.log('loadCards');
 
-        props.smurfs.forEach(element => {
-            console.log(element);
-            return (
-            <div>
-                <h2>{element.name}</h2>
-                <h3>{element.age}</h3>
-                <h4>{element.height}</h4>
-            </div>
-            );
-        });
+            console.log ('return', props.smurfs)
+            var result = props.smurfs.map(item => (
+                <div className="yellow-box" style={styles}>
+                <h2>{item.name}</h2>
+                <h3>Age: {item.age}</h3>
+                <h3>Height: {item.height}</h3>
+                </div>
+            ))
+            return result
     }
+
+    let styles = {
+        margin: '20px',
+        padding: '20px',
+        width: '250px',
+        height: '150px',
+        backgroundColor: '#88CCFF',
+      };
+ 
+      console.log('SmurfList props', props.smurfs);
+
+
+
 
 
     return (
@@ -26,8 +42,15 @@ const SmurfList = props => {
             <div className="error">{props.error}</div>
         ) : (
           <div className="content">
-              <h1>exporting props here!</h1>
-              {loadList()}
+              <h1>Smurfs:</h1>
+              {loadCards()}
+                {/* {props.smurfs.map(item => (
+                    <div className="yellow-box" style={styles}>
+                    <h2>{item.name}</h2>
+                    <h3>Age: {item.age}</h3>
+                    <h3>Height: {item.height}</h3>
+                    </div>
+                ))} */}
           </div>
         )}
       </>
@@ -45,6 +68,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-{})(SmurfList);
+{updateList})(SmurfList);
 
-//add action
